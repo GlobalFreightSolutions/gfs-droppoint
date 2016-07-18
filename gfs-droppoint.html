@@ -133,16 +133,29 @@
 				text-decoration: none;
 				font-size: 16px;
 				float: right;
-				cursor: pointer
+				cursor: pointer;
+				transition: opacity 300ms ease-in-out 
 			}
+
+				.choose-droppoint:hover {
+					opacity: .85;
+				}
 
 				.choose-droppoint.chosen {
 					background-color: #4CAF50; /* Green */
 				}
 
+					.choose-droppoint.chosen:hover {
+						opacity: 1;
+					}
+
 				.choose-droppoint.unchose {
 					background-color: #d60000; /* Green */
 				}
+
+					.choose-droppoint.unchose:hover {
+						opacity: 1;
+					}
 
 			.dp-opening-hours table {
 				margin-top: 6px;
@@ -207,7 +220,7 @@
 			/* MP customization */
 			.dp-card {
 				width: 336px;
-				height: 280px;
+				height: 340px;
 				margin: 10px 20px 10px 0;
 			}
 
@@ -221,14 +234,27 @@
 				}
 
 			/* opening hours table style */
+			td.dp-day-time-slots {
+				line-height: 10px;
+			}
+
 			.dp-day-name, .dp-day-time-slot {
 				font-size: 13px;
 			}
+
+				.dp-day-time-slot:nth-child(2n) {
+					margin: 5px 0;
+					position: relative
+				}
 
 			.dp-small-heading {
 				margin-bottom: 0;
 				font-size: 13px;
 				font-weight: bold;
+			}
+
+			.multi-times {
+				line-height: 20px
 			}
 
 			.dp-icon {
@@ -375,7 +401,7 @@
 								<tr>
 									<td class="dp-day-name"><ul><li>{{item.day}}</li></ul></td>
 									<td class="dp-day-time-slots">
-										<ul>
+										<ul class="testMe">
 											<template is="dom-repeat" items={{item.timeSlots}}>
 												<li class="dp-day-time-slot">{{item.fromTime}} - {{item.toTime}}</li>
 											</template>
@@ -385,7 +411,7 @@
 							</template>
 						</table>
 
-						<div class="special-badges">
+						<!--<div class="special-badges">
 							<div class="open-late">
 								<div class="badge-text">LATE</div>
 							</div>
@@ -396,7 +422,7 @@
 								<div class="badge-text">SUN</div>
 							</div>
 							<div class="parking"></div>
-						</div>
+						</div>-->
 					</div>
 				</template>
 			</div>
@@ -517,6 +543,7 @@
 								timeSlot.fromTime = self._getTimeStr(timeSlot.fromDateTime);
 								timeSlot.toTime = self._getTimeStr(timeSlot.toDateTime);
 							});
+								
 							if (collectionSlot.timeSlots.length > 0) {
 								self.droppointData.weekCollectionSlots.push(collectionSlot);
 							}
@@ -596,7 +623,7 @@
 
 			_getTimeStr: function (d) {
 				var minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes();
-				var hours = (d.getHours() % 12).toString();
+				var hours = d.getHours() > 12 ? (d.getHours() % 12).toString() : d.getHours().toString();
 				var ampm = d.getHours() >= 12 ? 'pm' : 'am';
 				return hours + ':' + minutes + ampm;
 			},
