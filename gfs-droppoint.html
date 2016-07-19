@@ -397,7 +397,7 @@
 					<div class="dp-opening-hours">
 						<div class="dp-small-heading">Opening Hours</div>
 						<table>
-							<template is="dom-repeat" items="{{droppointData.weekCollectionSlots}}">
+							<template is="dom-repeat" items="{{_weekCollection}}">
 								<tr>
 									<td class="dp-day-name"><ul><li>{{item.day}}</li></ul></td>
 									<td class="dp-day-time-slots">
@@ -487,13 +487,11 @@
 				streetAddress: {
 					type: String,
 					notify: true
+				},
+				_weekCollection: {
+				    type: Object,
+				    notify: true
 				}
-			},
-			listeners: {
-				//'chosen-changed': 'chosenChanged'
-				"droppointData-changed": "chosenChanged",
-				"droppoint-data-changed": "chosenChanged",
-				"droppointdata-changed": "chosenChanged"
 			},
 
 
@@ -527,6 +525,7 @@
 
 					var dayCount = 0;
 					var self = this;
+					var buildWeekCollection = [];
 					this.droppointData.weekCollectionSlots = [];
 					if (!this.droppointData.collectionSlots) this.droppointData.collectionSlots = [];
 
@@ -545,11 +544,12 @@
 							});
 								
 							if (collectionSlot.timeSlots.length > 0) {
-								self.droppointData.weekCollectionSlots.push(collectionSlot);
+							    //self.droppointData.weekCollectionSlots.push(collectionSlot);
+							    buildWeekCollection.push(collectionSlot);
 							}
 						}
 					});
-
+					this.set('_weekCollection', buildWeekCollection);
 					this.streetAddress = this.droppointData.geoLocation.addressLines[0] + ", " + this.droppointData.geoLocation.town + ", " + this.droppointData.geoLocation.postCode
 				}
 			},
