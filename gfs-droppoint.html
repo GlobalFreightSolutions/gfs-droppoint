@@ -91,8 +91,8 @@
 			}
 
 			.dp-small-heading {
-				margin-top: 8px;
-				margin-bottom: 0px;
+				margin-top: 0;
+				margin-bottom: 0;
 				font-size: 0.6em;
 			}
 
@@ -252,6 +252,10 @@
 				font-weight: bold;
 			}
 
+				.dp-small-heading .fa-clock-o, .dp-small-heading .fa-road {
+					font-size: 15px
+				}
+
 			.multi-times {
 				line-height: 20px
 			}
@@ -277,6 +281,11 @@
 				max-width: 200px;
 			}
 
+			#dp-address .store-name {
+				margin: 0 0 3px;
+				font-weight: bold;
+				text-transform: capitalize
+			}
 
 			@media (max-width: 976px) {
 				.dp-card {
@@ -370,22 +379,28 @@
 				<div class="dp-details">
 
 					<div class="dp-icon">
-						<!--<img src="{{droppointData.providerLogo}}" class="imageicon" height="45" />-->
 						<img src="/bower_components/gfs-droppoint/images/carriers/medium/{{droppointData.providerName}}.png" width="95" />
 					</div>
 					<div id="dp-address">
+						<div class="store-name">
+							{{droppointDescription}}
+						</div>
 						<template is="dom-repeat" items="{{droppointData.geoLocation.addressLines}}">
-							{{item}}
-							<br />
+							<div class="store-address">
+								{{item}},
+							</div>
 						</template>
 						
-						{{droppointData.geoLocation.town}}, {{droppointData.geoLocation.postCode}}
-						
+						<div class="store-location">
+							{{droppointData.geoLocation.town}}, {{droppointData.geoLocation.postCode}}
+						</div>
 					</div>
 					<template is="dom-if" if="showDistance">
-						<div class="dp-small-heading">Distance</div>
+						<div class="dp-small-heading">
+							<i class="fa fa-road"></i> Distance
+						</div>
 						<div id="dp-distance">
-							<i class="fa fa-road"></i>{{droppointData.localizedDistance}}
+							{{droppointData.localizedDistance}}
 						</div>
 					</template>
 
@@ -395,11 +410,17 @@
 				<template is="dom-if" if="{{showOpeningHours}}">
 
 					<div class="dp-opening-hours">
-						<div class="dp-small-heading">Opening Hours</div>
+						<div class="dp-small-heading">
+							<i class="fa fa-clock-o"></i> Opening Hours
+						</div>
 						<table>
 							<template is="dom-repeat" items="{{_weekCollection}}">
 								<tr>
-									<td class="dp-day-name"><ul><li>{{item.day}}</li></ul></td>
+									<td class="dp-day-name">
+										<ul>
+											<li>{{item.day}}</li>
+										</ul>
+									</td>
 									<td class="dp-day-time-slots">
 										<ul class="testMe">
 											<template is="dom-repeat" items={{item.timeSlots}}>
@@ -511,7 +532,6 @@
 				// window.addEventListener('droppointChosen', this.onDroppointChosen.bind(this), false);
 				// window.addEventListener('droppointUnchosen', this.onDroppointUnchosen.bind(this), false);
 				window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
-
 			},
 
 			initData: function () {
@@ -550,7 +570,12 @@
 						}
 					});
 					this.set('_weekCollection', buildWeekCollection);
-					this.streetAddress = this.droppointData.geoLocation.addressLines[0] + ", " + this.droppointData.geoLocation.town + ", " + this.droppointData.geoLocation.postCode
+					this.streetAddress = this.droppointData.geoLocation.addressLines[0] + ", " + this.droppointData.geoLocation.town + ", " + this.droppointData.geoLocation.postCode;
+				}
+			
+				if ((Object.keys(this.droppointData).length) > 0) {
+					this.droppointDescription = this.droppointData.droppointDescription.toLowerCase();
+					this.droppointData.droppointDescription = this.droppointData.droppointDescription.toLowerCase(); // selected droppoint
 				}
 			},
 
@@ -565,6 +590,13 @@
 				if (typeof (this.droppointData.chosen) === "null") return;
 				//Send global event
 				this.fire("droppoint-changed", this.droppointData);
+
+				// clear selected service when you change or deselect a drop point
+				var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
+				for (var i = 0; i < droppointItems.length; i++) {
+					droppointItems[i].checked = false;
+				}
+				this.fire("getDroppointSelectedService");
 			},
 
 			render: function () {
