@@ -131,8 +131,11 @@
                 text-align: center;
                 text-decoration: none;
                 font-size: 16px;
-                float: right;
+                /*float: right;*/
                 cursor: pointer;
+                position: absolute;
+                right: 15px;
+                bottom: 10px;
                 transition: opacity 300ms ease-in-out
             }
 
@@ -160,6 +163,25 @@
                 width: 53%;
                 margin-top: 6px;
             }
+
+            .overlay #dp-address,
+            .overlay .dp-small-heading,
+            .overlay #dp-distance {
+                display: none;
+            }
+
+            .overlay .dp-small-heading.opening-hours {
+                display: block;
+            }
+
+            .overlay .dp-small-heading {
+                margin-top: 5px;
+            }
+
+            .overlay .dp-opening-hours {
+               width: 100%;
+                margin-top: 20px;
+           }
 
             .b-cancel {
             }
@@ -333,19 +355,44 @@
                 }
             }
 
+            @media (max-width: 736px) and (orientation: landscape) {
+
+                .dp-card {
+                    min-width: 345px;
+                    max-width: 345px;
+                    height: 320px;
+                }
+
+                    .dp-card .content .dp-details {
+                        width: 41%;
+                        font-size: 12px;
+                    }
+
+                        .dp-opening-hours {
+                            min-width: 55%;
+                            width: auto;
+                            float: right;
+                        }
+
+                #dp-address {
+                    font-size: 12px;
+                }
+            }
+
             @media (max-width: 667px) {
                 .dp-card {
-                    min-width: 286px;
-                    max-width: 286px;
+                    min-width: 345px;
+                    max-width: 345px;
+                    height: 280px;
                 }
 
                 .dp-card .content .dp-details {
-                    width: 95px;
+                    width: 44%;
                 }
 
-                    .dp-opening-hours {
-                        width: 59%;
-                    }
+                .dp-opening-hours.gfs-droppoint {
+                    min-width: 52%;
+                }
 
                 .dp-day-name {
                     font-size: 12px;
@@ -357,6 +404,23 @@
                 }
             }
 
+            @media (max-width: 568px) and (orientation: landscape) {
+                .dp-card {
+                    min-width: 345px;
+                    max-width: 345px;
+                    height: 280px;
+                }
+
+                    .dp-card .content .dp-details {
+                        width: 41%;
+                    }
+
+                    .dp-opening-hours {
+                        min-width: 55%;
+                    }
+
+            }
+
             @media (max-width: 414px) {
                 .dp-card {
                     min-width: 323px;
@@ -364,13 +428,16 @@
                     height: 295px;
                 }
 
-                    .dp-icon img {
-                        min-width: 100%;
-                        width: 100%;
-                    }
-
                     .dp-card:nth-child(2n+1) {
                         margin-right: 20px;
+                    }
+
+                    .dp-card .content .dp-details {
+                        font-size: 13px;
+                    }
+
+                    .dp-opening-hours {
+                        width: 52%;
                     }
             }
 
@@ -381,9 +448,14 @@
                     height: auto;
                 }
 
-                .dp-opening-hours {
-                    width: 60%;
-                }
+                    .dp-card .content .dp-details {
+                        width: 40%;
+                        font-size: 12px;
+                    }
+
+                    .dp-opening-hours {
+                        width: 56%;
+                    }
             }
 
             @media (max-width: 340px) {
@@ -393,14 +465,18 @@
                     display: block;
                 }
 
-                .dp-details {
-                    float: left;
-                }
-
                 .dp-card .content .dp-details {
                     width: 85px;
                     margin: 0 5px 0 0;
                 }
+
+                .dp-details {
+                    float: left;
+                }
+
+                    .dp-details .dp-icon img {
+                        width: 100%;
+                    }
 
                 .dp-opening-hours {
                     width: 57%;
