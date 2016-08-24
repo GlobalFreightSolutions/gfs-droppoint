@@ -13,7 +13,8 @@
             }
 
             ul {
-                padding-left: 2px;
+                margin: 0;
+                padding: 0;
             }
 
             li {
@@ -82,6 +83,7 @@
 
                 .dp-card .content .dp-details {
                     width: 66%;
+                    font-size: 13px;
                     overflow: hidden;
                 }
 
@@ -94,6 +96,7 @@
                 margin-top: 0;
                 margin-bottom: 0;
                 font-size: 0.6em;
+                text-align: left;
             }
 
             .label {
@@ -160,8 +163,9 @@
                     }
 
             .dp-opening-hours {
-                width: 53%;
+                width: 60%;
                 margin-top: 6px;
+                text-align: right;
             }
 
             .overlay #dp-address,
@@ -176,10 +180,11 @@
 
             .overlay .dp-small-heading {
                 margin-top: 5px;
+                text-align: left;
             }
 
             .overlay .dp-opening-hours {
-               width: 100%;
+                width: 100%;
                 margin-top: 20px;
            }
 
@@ -252,9 +257,9 @@
                     margin: 0 10px 0 0;
                 }
 
-            /* opening hours table style */
+            /* opening hours style */
             .dp-day-time-slots {
-                width: 77%;
+                width: 75%;
                 font-size: 13px;
                 line-height: 10px;
                 display: inline-block;
@@ -262,7 +267,7 @@
 
                 .dp-day-time-slot:nth-child(2n) {
                     margin: 5px 0;
-                    position: relative
+                    position: relative;
                 }
 
             .dp-day-name {
@@ -270,6 +275,7 @@
                 font-size: 13px;
                 font-weight: bold;
                 display: inline-block;
+                vertical-align: top;
             }
 
             .dp-small-heading {
@@ -283,15 +289,22 @@
                 }
 
                 .dp-small-heading .fa-clock-o, .dp-small-heading .fa-road {
-                    font-size: 15px
+                    font-size: 15px;
+                }
+
+                .weekCollection {
+                    margin: 10px 0 0;
                 }
 
                 .wrap-opening-hours {
-                    height: 20px;
+                    margin: 4px 0 0 0;
+                    min-height: 20px;
+                    height: auto;
+                    text-align: left;
                 }
 
             .multi-times {
-                line-height: 20px
+                line-height: 20px;
             }
 
             .dp-icon {
@@ -360,7 +373,7 @@
                 .dp-card {
                     min-width: 345px;
                     max-width: 345px;
-                    height: 320px;
+                    height: 330px;
                 }
 
                     .dp-card .content .dp-details {
@@ -383,7 +396,7 @@
                 .dp-card {
                     min-width: 345px;
                     max-width: 345px;
-                    height: 280px;
+                    height: 330px;
                 }
 
                 .dp-card .content .dp-details {
@@ -408,7 +421,7 @@
                 .dp-card {
                     min-width: 345px;
                     max-width: 345px;
-                    height: 280px;
+                    height: 335px;
                 }
 
                     .dp-card .content .dp-details {
@@ -425,7 +438,7 @@
                 .dp-card {
                     min-width: 323px;
                     max-width: 100%;
-                    height: 295px;
+                    height: 335px;
                 }
 
                     .dp-card:nth-child(2n+1) {
@@ -444,7 +457,7 @@
             @media (max-width: 375px) {
                 .dp-card {
                     min-width: 284px;
-                    min-height: 295px;
+                    min-height: 335px;
                     height: auto;
                 }
 
@@ -479,7 +492,7 @@
                     }
 
                 .dp-opening-hours {
-                    width: 57%;
+                    width: 60%;
                     float: left;
                 }
 
@@ -506,11 +519,9 @@
             </template>
 
             <div class="content">
-
                 <div class="dp-details">
-
                     <div class="dp-icon">
-                        <img src="/bower_components/gfs-droppoint/images/carriers/medium/{{droppointData.providerName}}.png" width="95" />
+                        <img src="{{_icon}}" width="95" />
                     </div>
                     <div id="dp-address">
                         <div class="store-name">
@@ -559,26 +570,10 @@
                                 </div>
                             </template>
                         </div>
-
-                        <!--<div class="special-badges">
-                            <div class="open-late">
-                                <div class="badge-text">LATE</div>
-                            </div>
-                            <div class="open-late">
-                                <div class="badge-text">SAT</div>
-                            </div>
-                            <div class="open-late">
-                                <div class="badge-text">SUN</div>
-                            </div>
-                            <div class="parking"></div>
-                        </div>-->
                     </div>
                 </template>
             </div>
             <div class="actions">
-                <!--<template is="dom-if" if="{{isTickButton}}">
-                    <div class$="b-tick {{buttonClass}}" on-click="toggleChooseDropPoint"></div>
-                </template>-->
                 <template is="dom-if" if="{{isStandardButton}}">
                     <div on-tap="toggleChooseDropPoint" on-mouseover="onHovered" on-mouseout="onUnHovered" class$="button choose-droppoint {{buttonClass}}">{{buttonText}}</div>
                 </template>
@@ -637,10 +632,20 @@
                     type: String,
                     notify: true
                 },
+                providerLogo: {
+                    type: String
+                },
+                providerName: {
+                    type: String
+                },
+                _icon: {
+                    type: String,
+                    computed: "_computeIcon(providerLogo, providerName)"
+                },
                 _weekCollection: {
                     type: Object,
                     notify: true
-                }
+                },
             },
 
 
@@ -674,6 +679,10 @@
                     var dayCount = 0;
                     var self = this;
                     var buildWeekCollection = [];
+
+                    self.providerName = this.droppointData.providerName;
+                    self.providerLogo = this.droppointData.geoLocation.countryCode;
+
                     this.droppointData.weekCollectionSlots = [];
                     if (!this.droppointData.collectionSlots) this.droppointData.collectionSlots = [];
 
@@ -790,7 +799,22 @@
 
             _listenForChoose: function (e) {
 
-            }
+            },
+
+            _computeIcon: function(countryCode, providerName) {
+                var url = this.resolveUrl('/bower_components/gfs-droppoint/images/carriers');
+
+                switch(countryCode) {
+                    case "DE":
+                        return url + '/DE/' + this.providerName + '.png';
+                    case "FR":
+                    case "BE":
+                    case "ES":
+                        return url + '/FR/' + this.providerName + '.png';
+                    default:
+                        return url + '/GB/' + this.providerName + '.png';
+                }
+            },
 
         });
     </script>
