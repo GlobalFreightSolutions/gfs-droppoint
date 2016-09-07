@@ -270,6 +270,10 @@
                     position: relative;
                 }
 
+            li.dp-day-time-slot {
+                text-align: right;
+            }
+
             .dp-day-name {
                 width: 20%;
                 font-size: 13px;
@@ -394,7 +398,8 @@
 
             @media (max-width: 667px) {
                 .dp-card {
-                    min-width: 345px;
+                    min-width: 285px;
+                    width: 285px;
                     max-width: 345px;
                     height: 330px;
                 }
@@ -403,7 +408,7 @@
                     width: 44%;
                 }
 
-                .dp-opening-hours.gfs-droppoint {
+                .dp-opening-hours {
                     min-width: 52%;
                 }
 
@@ -419,7 +424,8 @@
 
             @media (max-width: 568px) and (orientation: landscape) {
                 .dp-card {
-                    min-width: 345px;
+                    min-width: 280px;
+                    width: 280px;
                     max-width: 345px;
                     height: 335px;
                 }
@@ -446,11 +452,21 @@
                     }
 
                     .dp-card .content .dp-details {
+                        width: 50%;
+                        min-width: initial !important;
                         font-size: 13px;
                     }
 
                     .dp-opening-hours {
                         width: 52%;
+                    }
+
+                    .dp-small-heading {
+                        font-size: 15px;
+                    }
+
+                    .wrap-opening-hours {
+                        font-size: 14px;
                     }
             }
 
@@ -462,12 +478,13 @@
                 }
 
                     .dp-card .content .dp-details {
-                        width: 40%;
+                        width: 46%;
                         font-size: 12px;
                     }
 
                     .dp-opening-hours {
-                        width: 56%;
+                        width: 50%;
+                        min-width: initial !important;
                     }
             }
 
@@ -504,6 +521,27 @@
                 .dp-day-name, .dp-day-time-slot {
                     font-size: 11px;
                     letter-spacing: -.4px;
+                }
+            }
+
+            @media (max-width: 340px) {
+
+                .dp-card {
+                    width: 249px;
+                }
+
+                .dp-card .content .dp-details {
+                    width: 45%;
+                    font-size: 12px;
+                }
+
+                .dp-opening-hours {
+                    width: 52%;
+                    min-width: initial !important;
+                }
+
+                .dp-day-name {
+                    width: 20%;
                 }
             }
         </style>
@@ -618,11 +656,11 @@
                 },
                 buttonClass: {
                     type: String,
-                    value: "unchosen"
+                    value: "Deselect"
                 },
                 buttonText: {
                     type: String,
-                    value: "Choose"
+                    value: "Select"
                 },
                 streetAddress: {
                     type: String,
@@ -736,11 +774,11 @@
                 this.initData();
                 if (this.droppointData.chosen) {
                     this.buttonClass = "chosen";
-                    this.buttonText = "Chosen";
+                    this.buttonText = "Deselect";
                 }
                 else {
                     this.buttonClass = "unchosen";
-                    this.buttonText = "Choose";
+                    this.buttonText = "Select";
                 }
             },
 
@@ -748,15 +786,15 @@
                 if (typeof (this.droppointData.chosen) === "undefined") {
                     this.droppointChosen = false;
                     this.buttonClass = "unchosen";
-                    this.buttonText = "Choose";
+                    this.buttonText = "Select";
                 }
                 else if (this.droppointData.chosen === false) {
                     this.buttonClass = "unchosen";
-                    this.buttonText = "Choose";
+                    this.buttonText = "Select";
                 }
                 else {
                     this.buttonClass = "unchose";
-                    this.buttonText = "Unchose";
+                    this.buttonText = "Deselect";
                 }
             },
 
@@ -764,15 +802,15 @@
                 if (typeof (this.droppointData.chosen) === "undefined") {
                     this.droppointChosen = false;
                     this.buttonClass = "unchosen";
-                    this.buttonText = "Choose";
+                    this.buttonText = "Select";
                 }
                 else if (this.droppointData.chosen === true) {
                     this.buttonClass = "chosen";
-                    this.buttonText = "Chosen";
+                    this.buttonText = "Deselect";
                 }
                 else if (this.droppointData.chosen === false) {
                     this.buttonClass = "unchosen";
-                    this.buttonText = "Choose";
+                    this.buttonText = "Select";
                 }
             },
 
