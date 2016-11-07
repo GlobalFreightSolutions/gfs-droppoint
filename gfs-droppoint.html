@@ -27,7 +27,6 @@
 
             .content-container {
                 margin: auto;
-                /*width: 100%;*/
             }
 
             .overlay {
@@ -54,7 +53,7 @@
             }
 
             .no-button.dp-card {
-                /*height: 208px;*/
+                
             }
 
             .dp-card {
@@ -76,16 +75,9 @@
                 border: 1px solid #FAFAFA;
             }
 
-
             .dp-card .content {
                 display: flex;
             }
-
-                .dp-card .content .dp-details {
-                    width: 66%;
-                    font-size: 13px;
-                    overflow: hidden;
-                }
 
             .dp-heading {
                 margin-top: 4px;
@@ -134,7 +126,6 @@
                 text-align: center;
                 text-decoration: none;
                 font-size: 16px;
-                /*float: right;*/
                 cursor: pointer;
                 position: absolute;
                 right: 15px;
@@ -146,24 +137,20 @@
                     opacity: .85;
                 }
 
-                .choose-droppoint.chosen {
-                    background-color: #4CAF50; /* Green */
+                .choose-droppoint.chosen, .choose-droppoint.unchose {
+                    background-color: #4caf50; /* Green */
                 }
 
                     .choose-droppoint.chosen:hover {
                         opacity: 1;
                     }
 
-                .choose-droppoint.unchose {
-                    background-color: #d60000; /* Green */
-                }
-
                     .choose-droppoint.unchose:hover {
-                        opacity: 1;
+                        opacity: .8;
                     }
 
             .dp-opening-hours {
-                width: 60%;
+                width: 45%;
                 margin-top: 6px;
                 text-align: right;
             }
@@ -239,8 +226,6 @@
                 filter: invert(1);
             }
 
-
-            /* MP customization */
             .dp-card {
                 width: 336px;
                 height: 340px;
@@ -253,8 +238,10 @@
                 }
 
                 .dp-card .content .dp-details {
-                    width: 43%;
+                    width: 51%;
                     margin: 0 10px 0 0;
+                    font-size: 13px;
+                    overflow: hidden;
                 }
 
             /* opening hours style */
@@ -279,7 +266,6 @@
                 font-size: 13px;
                 font-weight: bold;
                 display: inline-block;
-                /*vertical-align: top;*/
             }
 
             .dp-small-heading {
@@ -328,6 +314,10 @@
                 font-size: 13px;
             }
 
+                .overlay .dp-day-time-slots {
+                    width: auto;
+                }
+
             #dp-address {
                 max-width: 200px;
             }
@@ -355,16 +345,11 @@
                 }
 
                 .dp-opening-hours {
-                    width: 56%;
                     float: left;
                 }
 
                 .dp-card-margin {
                     margin-right: 20px;
-                }
-
-                .dp-card .content .dp-details {
-                    width: 120px;
                 }
 
                 .actions {
@@ -408,11 +393,16 @@
                     width: 44%;
                 }
 
+                #dp-address {
+                    margin: 0 0 10px;
+                }
+
                 .dp-opening-hours {
                     min-width: 52%;
                 }
 
                 .dp-day-name {
+                    width: 28%;
                     font-size: 12px;
                 }
 
@@ -462,11 +452,7 @@
                     }
 
                     .dp-small-heading {
-                        font-size: 15px;
-                    }
-
-                    .wrap-opening-hours {
-                        font-size: 14px;
+                        font-size: 13px;
                     }
             }
 
@@ -646,11 +632,6 @@
                     type: String,
                     value: "content-container"
                 },
-                /*chosen: {
-                    type: Boolean,
-                    value: false,
-                    notify: true
-                },*/
                 droppointId: {
                     type: String
                 },
@@ -696,18 +677,15 @@
                     this.isStandardButton = !this.isTickButton;
                 }
 
-                // window.addEventListener('droppointChosen', this.onDroppointChosen.bind(this), false);
-                // window.addEventListener('droppointUnchosen', this.onDroppointUnchosen.bind(this), false);
                 window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
             },
 
             initData: function () {
-                //this.chosen = this.droppointData.chosen;
                 this.droppointId = this.droppointData.droppointId || "";
                 if (typeof (this.droppointData.chosen) === "undefined") {
                     this.droppointChosen = false;
                 }
-                if (this.droppointData.collectionSlots) { // && this.droppointData.collectionSlots) {
+                if (this.droppointData.collectionSlots) {
                     this.droppointData.distanceInKm = (Math.round(this.droppointData.DistanceInMeters / 100)) / 10;
 
                     var dayCount = 0;
@@ -728,14 +706,11 @@
                             collectionSlot.day = DOW_NAMES[collectionSlot.collectionDateTime.getDay()];
 
                             collectionSlot.timeSlots.forEach(function (timeSlot) {
-                                timeSlot.fromDateTime = self._getUtcTime(new Date(timeSlot.from));
-                                timeSlot.toDateTime = self._getUtcTime(new Date(timeSlot.to));
-                                timeSlot.fromTime = self._getTimeStr(timeSlot.fromDateTime);
-                                timeSlot.toTime = self._getTimeStr(timeSlot.toDateTime);
+                                timeSlot.fromTime = timeSlot.from;
+                                timeSlot.toTime = timeSlot.to;
                             });
 
                             if (collectionSlot.timeSlots.length > 0) {
-                                //self.droppointData.weekCollectionSlots.push(collectionSlot);
                                 buildWeekCollection.push(collectionSlot);
                             }
                         }
