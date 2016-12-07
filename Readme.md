@@ -11,4 +11,4 @@ The `gfs-droppoint` widget is used to show the available droppoints on the ma.
 </gfs-droppoint>
 ```
 
-More info and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/documentation/gfs-checkout/the-gfs-checkout-widgets/the-droppoint-widget/ "The Droppoint Widget")
+More info and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/documentation/gfs-checkout/the-gfs-checkout-widgets/droppoint-widget/ "The Droppoint Widget")
