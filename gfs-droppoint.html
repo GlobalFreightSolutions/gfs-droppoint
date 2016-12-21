@@ -743,6 +743,10 @@
             _computeIcon: function(countryCode, providerName) {
                 var url = this.resolveUrl('/bower_components/gfs-droppoint/images/carriers');
 
+                if (providerName === 'DPD') {
+                    this.providerName = 'dpdpickup'
+                }
+
                 switch(countryCode) {
                     case "DE":
                         return url + '/DE/' + this.providerName + '.png';
