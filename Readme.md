@@ -3,7 +3,7 @@
 
 # &lt;gfs-droppoint&gt;
 
-The `gfs-droppoint` widget is used to show the available droppoints on the ma.
+The `gfs-droppoint` widget is used to show the available droppoints on the map.
 
 ## Install
 

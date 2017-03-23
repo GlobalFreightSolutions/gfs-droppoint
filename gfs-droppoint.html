@@ -123,11 +123,11 @@
                 }
 
                 .choose-droppoint.chosen, .choose-droppoint.unchose {
-                    background-color: #4caf50; /* Green */
+                    background-color: #4caf50;
                 }
 
                     .choose-droppoint.chosen:hover {
-                        opacity: 1;
+                        opacity: .8;
                     }
 
                     .choose-droppoint.unchose:hover {
@@ -524,7 +524,9 @@
             </div>
             <div class="actions">
                 <template is="dom-if" if="{{isStandardButton}}">
-                    <div on-tap="toggleChooseDropPoint" on-mouseover="onHovered" on-mouseout="onUnHovered" class$="button choose-droppoint {{buttonClass}}">{{buttonText}}</div>
+                    <div on-tap="toggleChooseDropPoint" class$="button choose-droppoint {{buttonClass}}">
+                        {{displayButtonText}}
+                    </div>
                 </template>
             </div>
         </div>
@@ -568,9 +570,13 @@
                     type: String,
                     value: "Deselect"
                 },
-                buttonText: {
+                buttonSelectedText: {
                     type: String,
                     value: "Select"
+                },
+                buttonDeselectedText: {
+                    type: String,
+                    value: "Deselect"
                 },
                 streetAddress: {
                     type: String,
@@ -594,14 +600,13 @@
 
 
             ready: function () {
-
-                var self = this;
+                this.displayButtonText = this.buttonSelectedText;
                 this.initData();
-                if (this.buttonType === "none")
-                {
+                if (this.buttonType === "none") {
                     this.isTickButton = false;
                     this.isStandardButton = false;
-                } else {
+                }
+                else {
                     this.isTickButton = (this.buttonType === "tick");
                     this.isStandardButton = !this.isTickButton;
                 }
@@ -678,43 +683,12 @@
                 this.initData();
                 if (this.droppointData.chosen) {
                     this.buttonClass = "chosen";
-                    this.buttonText = "Deselect";
+                    this.displayButtonText = this.buttonDeselectedText;
                 }
                 else {
                     this.buttonClass = "unchosen";
-                    this.buttonText = "Select";
-                }
-            },
-
-            onHovered: function () {
-                if (typeof (this.droppointData.chosen) === "undefined") {
-                    this.droppointChosen = false;
-                    this.buttonClass = "unchosen";
-                    this.buttonText = "Select";
-                }
-                else if (this.droppointData.chosen === false) {
-                    this.buttonClass = "unchosen";
-                    this.buttonText = "Select";
-                }
-                else {
-                    this.buttonClass = "unchose";
-                    this.buttonText = "Deselect";
-                }
-            },
-
-            onUnHovered: function() {
-                if (typeof (this.droppointData.chosen) === "undefined") {
-                    this.droppointChosen = false;
-                    this.buttonClass = "unchosen";
-                    this.buttonText = "Select";
-                }
-                else if (this.droppointData.chosen === true) {
-                    this.buttonClass = "chosen";
-                    this.buttonText = "Deselect";
-                }
-                else if (this.droppointData.chosen === false) {
-                    this.buttonClass = "unchosen";
-                    this.buttonText = "Select";
+                    this.displayButtonText = this.buttonSelectedText;
+                    
                 }
             },
 
@@ -756,8 +730,7 @@
                     default:
                         return url + '/GB/' + this.providerName + '.png';
                 }
-            },
-
+            }
         });
     </script>
 </dom-module>
