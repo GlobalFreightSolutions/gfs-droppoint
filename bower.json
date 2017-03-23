@@ -1,22 +1,35 @@
 {
-	"name": "gfs-droppoint",
-	"version": "0.0.1",
-	"description": "Add a description",
-	"dependencies": {
-		"polymer": "~1.6.0"
-	},
-	"devdependencies": {
-	    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-		"iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
-		"web-component-tester": "^4.0.0",
-		"webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
-	},
-	"main":"gfs-droppoint.html",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/GlobalFreightSolutions/gfs-droppoint"
-	},
-	"ignore": [
-	],
-	"private": true
+    "name": "gfs-droppoint",
+    "version": "0.0.1",
+    "description": "The Droppoint widget is used to show the available droppoints on the map",
+    "authors": [
+        "Global Freight Solutions Ltd <devsupport@justshoutgfs.com>"
+    ],
+    "keywords": [
+        "droppoint",
+        "gfs",
+        "checkout",
+        "polymer",
+        "web-components"
+    ],
+    "dependencies": {
+        "polymer": "~1.6.0",
+        "gfs-droppoint": "https://github.com/GlobalFreightSolutions/gfs-droppoint.git#master",
+        "gfs-checkout-widget": "https://github.com/GlobalFreightSolutions/gfs-checkout-widget.git#master",
+        "gfs-carrier-icon": "https://github.com/GlobalFreightSolutions/gfs-carrier-icon.git#master"
+    },
+    "devDependencies": {
+        "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+        "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+        "web-component-tester": "^4.0.0",
+        "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    },
+    "main":"gfs-droppoint.html",
+    "license": "Apache 2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GlobalFreightSolutions/gfs-droppoint"
+    },
+    "ignore": [
+    ]
 }
