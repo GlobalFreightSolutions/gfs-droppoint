@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-droppoint.svg?branch=master)](https://travis-ci.org/GlobalFreightSolutions/gfs-droppoint)
+[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-droppoint.svg?branch=develop)](https://travis-ci.org/GlobalFreightSolutions/gfs-droppoint)
 
 
 # &lt;gfs-droppoint&gt;
@@ -9,13 +9,24 @@ The `gfs-droppoint` widget is used to show the available droppoints on the map.
 
 ```bash
 # via bower
-$ bower install gfs-droppoint
+$ bower install --save gfs-droppoint
 ```
 
 ## Usage
+
+1. Import Web Components' polyfill:
+
 ```html
-<link rel="import" href="path_to_bower_components/gfs-droppoint/gfs-droppoint.html" />
+<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 ```
+
+2. Import Custom Element:
+
+```html
+<link rel="import" href="bower_components/gfs-droppoint/gfs-droppoint.html">
+```
+
+3. Start using it!
 
 <!---
 ```
@@ -41,6 +52,6 @@ $ bower install gfs-droppoint
 More info, demo and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/info/documentation/gfs-checkout/the-gfs-checkout-widgets/droppoint-widget/ "The Droppoint Widget")
 
 
-### License
+## License
 
-Apache License 2.0
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
