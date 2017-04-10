@@ -1,6 +1,6 @@
 {
     "name": "gfs-droppoint",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "The Droppoint widget is used to show the available droppoints on the map",
     "authors": [
         "Global Freight Solutions Ltd <devsupport@justshoutgfs.com>"
