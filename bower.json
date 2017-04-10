@@ -14,9 +14,9 @@
     ],
     "dependencies": {
         "polymer": "~1.6.0",
-        "gfs-droppoint": "https://github.com/GlobalFreightSolutions/gfs-droppoint.git#master",
-        "gfs-checkout-widget": "https://github.com/GlobalFreightSolutions/gfs-checkout-widget.git#master",
-        "gfs-carrier-icon": "https://github.com/GlobalFreightSolutions/gfs-carrier-icon.git#master"
+        "gfs-droppoint": "^1.0.0",
+        "gfs-checkout-widget": "^1.0.0",
+        "gfs-carrier-icon": "^1.0.0"
     },
     "devDependencies": {
         "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -28,7 +28,7 @@
     "license": "Apache 2.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/GlobalFreightSolutions/gfs-droppoint"
+        "url": "https://github.com/GlobalFreightSolutions/gfs-droppoint.git"
     },
     "ignore": [
     ]
