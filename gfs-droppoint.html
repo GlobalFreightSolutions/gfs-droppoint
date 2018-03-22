@@ -612,6 +612,7 @@
                 }
 
                 window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
+                window.addEventListener('droppoint-unselected', this.onDroppointChanged.bind(this), false);
             },
 
             initData: function () {
@@ -665,35 +666,24 @@
 
             //Global event handler
             onDroppointChanged: function (e) {
-                this.render();
+                if (!this.droppointData.isStore) {
+                    this.render();
+                }
             },
 
             //Local event fired
             chosenChanged: function (e) {
                 if (typeof (this.droppointData.chosen) === "null") return;
 
-                if (!this.droppointData.isStore) {
-                    //Send global event
-                    this.fire("droppoint-changed", this.droppointData);
+                //Send global event
+                this.fire("droppoint-changed", this.droppointData);
 
-                    // clear selected service when you change or deselect a drop point
-                    var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
-                    for (var i = 0; i < droppointItems.length; i++) {
-                        droppointItems[i].checked = false;
-                    }
-                    this.fire("getDroppointSelectedService");
+                // clear selected service when you change or deselect a drop point
+                var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
+                for (var i = 0; i < droppointItems.length; i++) {
+                    droppointItems[i].checked = false;
                 }
-                else {
-                    //Send global event
-                    this.fire("store-changed", this.droppointData);
-
-                    // clear selected service when you change or deselect a drop point
-                    var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
-                    for (var i = 0; i < droppointItems.length; i++) {
-                        droppointItems[i].checked = false;
-                    }
-                    this.fire("getDroppointSelectedService");
-                }
+                this.fire("getDroppointSelectedService");
             },
 
             render: function () {
@@ -701,6 +691,7 @@
                 if (this.droppointData.chosen) {
                     this.buttonClass = "chosen";
                     this.displayButtonText = this.buttonDeselectedText;
+                    this.fire("store-unselected", this.droppointData);
                 }
                 else {
                     this.buttonClass = "unchosen";
