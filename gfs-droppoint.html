@@ -649,6 +649,9 @@
                             }
                         }
                     });
+
+                    buildWeekCollection.sort(this.sortDays);
+
                     this.set('_weekCollection', buildWeekCollection);
                     this.streetAddress = this.droppointData.geoLocation.addressLines[0] + ", " + this.droppointData.geoLocation.town + ", " + this.droppointData.geoLocation.postCode;
                 }
@@ -668,15 +671,29 @@
             //Local event fired
             chosenChanged: function (e) {
                 if (typeof (this.droppointData.chosen) === "null") return;
-                //Send global event
-                this.fire("droppoint-changed", this.droppointData);
 
-                // clear selected service when you change or deselect a drop point
-                var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
-                for (var i = 0; i < droppointItems.length; i++) {
-                    droppointItems[i].checked = false;
+                if (!this.droppointData.isStore) {
+                    //Send global event
+                    this.fire("droppoint-changed", this.droppointData);
+
+                    // clear selected service when you change or deselect a drop point
+                    var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
+                    for (var i = 0; i < droppointItems.length; i++) {
+                        droppointItems[i].checked = false;
+                    }
+                    this.fire("getDroppointSelectedService");
                 }
-                this.fire("getDroppointSelectedService");
+                else {
+                    //Send global event
+                    this.fire("store-changed", this.droppointData);
+
+                    // clear selected service when you change or deselect a drop point
+                    var droppointItems = document.getElementsByClassName("droppoint-delivery-selection");
+                    for (var i = 0; i < droppointItems.length; i++) {
+                        droppointItems[i].checked = false;
+                    }
+                    this.fire("getDroppointSelectedService");
+                }
             },
 
             render: function () {
@@ -696,8 +713,22 @@
                 this.chosenChanged();
             },
 
+            sortDays: function (a, b) {
+                var sorter = {
+                    "Mon": 1,
+                    "Tue": 2,
+                    "Wed": 3,
+                    "Thu": 4,
+                    "Fri": 5,
+                    "Sat": 6,
+                    "Sun": 7 // set to 0 if this is first day of week
+                }
+
+                return sorter[a.day] - sorter[b.day];
+            },
+
             _getUtcTime: function (d) {
-                var utc = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds());
+                var utc = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds());
                 return utc;
             },
 
@@ -712,7 +743,7 @@
 
             },
 
-            _computeIcon: function(countryCode, providerName) {
+            _computeIcon: function (countryCode, providerName) {
                 var url = this.resolveUrl('./images/carriers');
 
                 if (providerName === 'DPD') {
