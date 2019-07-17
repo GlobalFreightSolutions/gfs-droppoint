@@ -9,7 +9,7 @@ The `gfs-droppoint` widget is used to show the available droppoints on the map.
 
 ```bash
 # via bower
-$ bower install --save gfs-droppoint
+$ npm i --save gfs-droppoint
 ```
 
 ## Usage
