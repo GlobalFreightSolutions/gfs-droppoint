@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-droppoint.svg?branch=master)](https://travis-ci.org/GlobalFreightSolutions/gfs-droppoint)
-
-
 The `gfs-droppoint` widget is used to show the available droppoints on the map.
 
 ## Usage

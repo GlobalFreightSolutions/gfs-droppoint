@@ -1,7 +1,7 @@
 {
     "name": "@gfsdeliver/gfs-droppoint",
     "version": "2.0.0",
-    "main": "gfs-carrier-icon.js",
+    "main": "gfs-droppoint.js",
     "author": "Global Freight Solutions",
     "license": "Apache-2.0",
     "scripts": {
