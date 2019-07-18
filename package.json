@@ -10,7 +10,8 @@
     "dependencies": {
         "@polymer/polymer": "^3.0.0",
         "@webcomponents/webcomponentsjs": "^1.2.0",
-        "@gfsdeliver/gfs-button": "2.0.0"
+        "@gfsdeliver/gfs-button": "^1.0.0",
+        "@gfsdeliver/gfs-toast": "^1.0.0"
     },
     "devDependencies": {
         "polymer-cli": "^1.7.1",

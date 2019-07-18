@@ -1,10 +1,9 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-spinner/paper-spinner.js';
 import '@polymer/iron-ajax/iron-ajax.js';
-import '@gfs/gfs-toast/gfs-toast.js';
+import '@gfsdeliver/gfs-toast/gfs-toast.js';
 
-import '@gfs/gfs-button/gfs-button.js';
-import { GfsCheckout } from '../gfs-checkout/gfs-checkout.js';
+import '@gfsdeliver/gfs-button/gfs-button.js';
 import './gfs-droppoint-styles';
 
 export class GfsDroppointMap extends PolymerElement {
@@ -81,11 +80,6 @@ export class GfsDroppointMap extends PolymerElement {
                                 {{droppointData.town}}, {{droppointData.zip}}
                             </div>
                         </div>
-
-                        <!--<div class="store-distance">
-                            <iron-icon icon="maps:navigation" class="distance-ico"></iron-icon>
-                            {{droppointData.distance}}
-                        </div>-->
                     </div>
 
                     <gfs-button class="default choose-droppoint map-btn" on-click="_getOpeningHours">View Opening Times</gfs-button>
@@ -574,8 +568,6 @@ export class GfsDroppointMap extends PolymerElement {
                 postalCode: postcode
             }
         }, (results, status) => {
-            GfsCheckout.initialAddress = postcode; // set the delivery address to the new one
-
             if (status == google.maps.GeocoderStatus.OK) {
                 var position = results[0].geometry.location;
 
@@ -597,12 +589,22 @@ export class GfsDroppointMap extends PolymerElement {
                 this.$.notificationError.horizontalAlign = "left";
                 this.$.notificationError.verticalAlign = "top";
                 gfsCheckoutElem.shadowRoot.querySelectorAll('#mapLoader')[0].style.display = 'none';
+                const checkoutData = {}
+                checkoutData.detail = {}
 
                 if (deliveryType === 'dropPoint') {
                     this.$.notificationError.fitInto = this.$.droppointMap;
+                    checkoutData.detail.droppoint = true;
+                    checkoutData.detail.store = false;
+                    checkoutData.detail.data = gfsCheckoutElem.dropPoints
+                    this._loadMarkers(checkoutData);
                 }
                 else {
                     this.$.notificationError.fitInto = this.$.storeMapCanvas;
+                    checkoutData.detail.droppoint = false;
+                    checkoutData.detail.store = true;
+                    checkoutData.detail.data = gfsCheckoutElem.stores
+                    this._loadMarkers(checkoutData);
                 }
 
                 this.$.notificationError.duration = 5000;
@@ -616,19 +618,6 @@ export class GfsDroppointMap extends PolymerElement {
 
     _hideDropPoints(obj, val) {
         this._clearMarkers(obj, val);
-    }
-
-    _showStores() {
-        if (this.$$('#toggleStoreOnMap').checked) {
-            if (!this.useStores) {
-                this._showStoreList = true;
-                this._loadStoreMarkers(this._stores, this._map);
-            }
-        }
-        else {
-            this._removeStoreMarkers();
-            this._showStoreList = false;
-        }
     }
 
     _storeIcon() {
