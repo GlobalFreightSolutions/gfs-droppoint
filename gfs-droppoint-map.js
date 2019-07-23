@@ -470,7 +470,7 @@ export class GfsDroppointMap extends PolymerElement {
         this.droppointData = e.detail.data;
 
         if (isDroppoint) {
-            this.carrierIcon = this._droppointInfoWindowIco(e.detail.data.country, e.detail.data.provider);
+            this.carrierIcon = this._droppointInfoWindowIco(e.detail.data.countryCode, e.detail.data.provider);
             this.isVisible = "";
         }
         else {
