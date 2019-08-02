@@ -1,6 +1,17 @@
 {
+    "description": "The gfs-droppoint widget is used to show the available droppoints on the map",
+    "keywords": [
+        "GFS",
+        "droppoint",
+        "web-components",
+        "web-component"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GlobalFreightSolutions/gfs-droppoint.git"
+    },
     "name": "@gfsdeliver/gfs-droppoint",
-    "version": "2.0.0",
+    "version": "2.0.0-preview.1",
     "main": "gfs-droppoint.js",
     "author": "Global Freight Solutions",
     "license": "Apache-2.0",
@@ -10,8 +21,8 @@
     "dependencies": {
         "@polymer/polymer": "^3.0.0",
         "@webcomponents/webcomponentsjs": "^1.2.0",
-        "@gfsdeliver/gfs-button": "^1.0.0",
-        "@gfsdeliver/gfs-toast": "^1.0.0"
+        "@gfsdeliver/gfs-button": "^2.0.0-preview.1",
+        "@gfsdeliver/gfs-toast": "^2.0.0-preview.1"
     },
     "devDependencies": {
         "polymer-cli": "^1.7.1",

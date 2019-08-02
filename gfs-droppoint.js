@@ -3,6 +3,7 @@ import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/iron-icons/device-icons.js';
 import '@gfsdeliver/gfs-button/gfs-button.js';
+import '@gfsdeliver/gfs-toast/gfs-toast.js';
 import './gfs-droppoint-map.js';
 import './gfs-droppoint-styles.js';
 
