@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <title>gfs-droppoint demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
+        <script type="module">
+            import '@polymer/iron-demo-helpers/demo-snippet.js';
+            import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+            import '@polymer/iron-icons/iron-icons.js';
+            import '../gfs-droppoint.js';
+            import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+
+            const template = html
+                `<custom-style>
+                    <style is="custom-style" include="demo-pages-shared-styles"></style>
+                </custom-style>`;
+            document.body.appendChild(template.content);
+        </script>
+    </head>
+    <body>
+        <div class="vertical-section-container centered"></div>
+            <demo-snippet>
+                <template>
+                    <gfs-droppoint
+                        container-class="dp-card"
+                        show-opening-hours="true"
+                        button-type="standard"
+                        droppoint-data='{"id":"COLLECTPLUS-57338","title":"Amco Newsagents","address":["69 Webbs Road","SW11 6SD","GB"],"geo":{"lat":51.4554461436296,"long":-0.161675620057261,"distance":241},"detail":"/api/droppoints/COLLECTPLUS-57338","provider":"COLLECT PLUS","countryCode":"GB","isDroppoint":true,"isStore":false,"marker":"","droppointDescription":"amco newsagents","chosen":true,"weekCollection":[{"dayOfWeek":"sunday","slots":[{"from":"07:00","to":"13:00","fromTime":"07:00","toTime":"13:00"}]},{"dayOfWeek":"monday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"tuesday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"wednesday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"thursday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"friday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"saturday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]}]}'>
+                    </gfs-droppoint>
+                </template>
+            </demo-snippet>
+        </div>
+    </body>
+</html>

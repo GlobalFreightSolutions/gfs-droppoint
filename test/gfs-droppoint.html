@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>gfs-droppoint basic tests</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+        <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+    </head>
+
+    <body>
+        <test-fixture id="droppoint">
+            <template>
+                <gfs-droppoint
+                    container-class="dp-card"
+                    show-opening-hours="true"
+                    droppoint-data='{"id":"COLLECTPLUS-57338","title":"Amco Newsagents","address":["69 Webbs Road","SW11 6SD","GB"],"geo":{"lat":51.4554461436296,"long":-0.161675620057261,"distance":241},"detail":"/api/droppoints/COLLECTPLUS-57338","provider":"COLLECT PLUS","countryCode":"GB","isDroppoint":true,"isStore":false,"marker":"","droppointDescription":"amco newsagents","chosen":true,"weekCollection":[{"dayOfWeek":"sunday","slots":[{"from":"07:00","to":"13:00","fromTime":"07:00","toTime":"13:00"}]},{"dayOfWeek":"monday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"tuesday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"wednesday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"thursday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"friday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]},{"dayOfWeek":"saturday","slots":[{"from":"06:00","to":"19:00","fromTime":"06:00","toTime":"19:00"}]}]}'>
+                </gfs-droppoint>
+            </template>
+        </test-fixture>
+
+        <script type="module">
+            import '@polymer/iron-test-helpers/mock-interactions.js';
+            import { Base } from '@polymer/polymer/polymer-legacy.js';
+            import '../gfs-droppoint.js';
+
+            suite('gfs-droppoint', function () {
+                var droppoint;
+
+                setup(function () {
+                    droppoint = fixture('droppoint');
+                });
+
+                test('instantiating the element works', function () {
+                    expect(droppoint).to.be.ok;
+                });
+
+                test('show opening hours is true', function () {
+                    expect(droppoint.showOpeningHours).to.be.eql(true);
+                });
+
+                test('weekCollection have 7 days', function () {
+                    expect(droppoint.droppointData.weekCollection).to.have.length(7);
+                });
+            });
+        </script>
+    </body>
+</html>

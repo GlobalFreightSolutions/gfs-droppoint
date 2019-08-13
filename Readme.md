@@ -5,7 +5,7 @@ The `gfs-droppoint` widget is used to show the available droppoints on the map.
 ### Install
 
 ```bash
-$ npm i --save gfs-droppoint
+$ npm i --save '@gfsdeliver/gfs-droppoint
 ```
 
 ### Import In a HTML file:
