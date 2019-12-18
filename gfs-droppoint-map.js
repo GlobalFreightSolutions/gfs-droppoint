@@ -167,6 +167,8 @@ export class GfsDroppointMap extends PolymerElement {
                 value: 4
             },
 
+            homeMapIcon: String,
+
             storeMapIcon: String,
 
             checkoutToken: {
@@ -289,7 +291,7 @@ export class GfsDroppointMap extends PolymerElement {
                     animation: google.maps.Animation.DROP,
                     title: 'Home',
                     html: 'Home',
-                    icon: this._getHomeIcon()
+                    icon: this._getHomeMapIcon()
                 };
 
                 let marker = new google.maps.Marker(homeMarkerConfig);
@@ -306,9 +308,9 @@ export class GfsDroppointMap extends PolymerElement {
         });
     }
 
-    _getHomeIcon() {
-        if (this.homeIcon) {
-            return this.homeIcon;
+    _getHomeMapIcon() {
+        if (this.homeMapIcon) {
+            return this.homeMapIcon;
         }
         else {
             return this.resolveUrl('//gfswidgetcdn.azurewebsites.net/images/widgets2.0/home.png');
