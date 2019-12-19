@@ -127,10 +127,7 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
             }
 
             .dd-action {
-                margin: 10px 10px 0 auto;
-                /*position: absolute;
-                right: 15px;
-                bottom: 15px;*/
+                margin: auto 10px 0 auto;
                 display: flex;
                 flex: 1 0 100%;
                 flex-direction: column;
@@ -599,9 +596,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 .dd-action {
                     width: 100%;
                     flex: none;
-                    /*position: absolute;
-                    right: 0;
-                    bottom: 15px;*/
                 }
 
             }

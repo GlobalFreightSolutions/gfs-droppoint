@@ -132,6 +132,8 @@ export class GfsDroppointMap extends PolymerElement {
 
             carrierIcon: String,
 
+            showOpeningHours: Boolean,
+
             droppointData: {
                 type: Object,
                 value: {}
