@@ -146,6 +146,11 @@ export class GfsDroppoint extends PolymerElement {
 
             isStandardButton: Boolean,
 
+            buttonSelectedText: {
+                type: String,
+                value: "Select"
+            },
+
             buttonDeselectedText: {
                 type: String,
                 value: "Deselect"

@@ -1,6 +1,3 @@
-// const $_documentContainer = document.createElement('template');
-// $_documentContainer.setAttribute('style', 'display: none;');
-
 const GfsDropPointStyle = document.createElement('template');
 
 GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
@@ -17,14 +14,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
             :host(::last-child) {
                 margin-bottom: 0;
             }
-
-            :host[orientation="horizontal"] {
-                background: red;
-            }
-
-            /*:host(:nth-child(2n+1)) {
-                margin-right: 0;
-            }*/
 
             h3 {
                 margin-top: 0px;
@@ -74,7 +63,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 width: 100%;
                 margin: 0;
                 display: flex;
-                /*flex-flow: column nowrap;*/
             }
 
             iron-icon {
@@ -151,18 +139,9 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 }
 
                 .choose-droppoint.chosen, .choose-droppoint.unchose {
-                    /*background-color: #0f7c06;*/
                     background-color: #24b618;
                     color: #fff;
                 }
-
-                    /*.choose-droppoint.chosen:hover {
-                        opacity: .8;
-                    }
-
-                    .choose-droppoint.unchose:hover {
-                        opacity: .8;
-                    }*/
 
             .address-wrap {
                 max-width: 43%;
@@ -202,11 +181,9 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
             }
 
             .dp-card .content .dp-details {
-                /*width: 42%;*/
                 margin: 0;
                 padding: 0 10px 5px;
                 font-size: 13px;
-
                 display: flex;
                 justify-content: flex-start;
                 flex-direction: column;
@@ -406,10 +383,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                         }
 
             @media (min-width: 1000px) {
-                /*:host(.vertical) {
-                    width: 100%;
-                }*/
-
                 :host(.vertical) .dp-card {
                     width: 100%;
                     flex: none;
@@ -451,34 +424,9 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 }
             }
 
-            @media (max-width: 1024px) {
-                .dp-card {
-
-                }
-            }
-
             @media (max-width: 976px) {
-                .dp-card {
-
-                }
-
-                .dp-card .content .dp-details {
-                    /*width: 30%;*/
-                }
-
                 #dp-address {
                     margin: 0 0 10px;
-                }
-
-                .dp-opening-hours, .address-wrap {
-                    /*width: 64%;*/
-                    /*margin-left: initial;*/
-                }
-
-                .weekCollection {
-                    /*display: flex;
-                    flex-flow: row wrap;
-                    justify-content: space-between;*/
                 }
 
                 .wrap-opening-hours {
@@ -490,7 +438,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                     }
 
                 .dp-day-name {
-                    /*min-width: 35px;*/
                     width: auto;
 
                 }
@@ -501,15 +448,7 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 }
             }
 
-            @media (max-width: 768px) /*and (orientation: landscape)*/ {
-                .dp-card {
-
-                }
-
-                .dp-day-time-slots {
-                    /*width: 65%;*/
-                }
-
+            @media (max-width: 768px) {
                 #dp-address {
                     font-size: 12px;
                 }
@@ -530,12 +469,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                     flex-flow: wrap;
                     justify-content: space-between;
                 }
-
-                /*:host(.vertical) .dd-action {
-                    position: absolute;
-                    right: 0;
-                    bottom: 15px;
-                }*/
             }
 
             @media (max-width: 700px) {
@@ -543,14 +476,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                     width: 100%;
                     height: auto;
                     flex: 1 1 250px;
-                }
-
-                /*.dp-card .content .dp-details {
-                    flex: 1 0 100%;
-                }*/
-
-                :host(.vertical) .dp-opening-hours {
-
                 }
 
                 .weekCollection {
@@ -579,16 +504,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                     flex: 1 0 auto;
                 }
 
-                .content {
-                    /*margin-bottom: 0;*/
-                    /*flex-direction: column;
-                    flex-flow: inherit;*/
-                }
-
-                .dp-opening-hours, .address-wrap {
-                    /*width: 40%;*/
-                }
-
                 .weekCollection {
                     display: block;
                 }
@@ -606,14 +521,12 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 }
 
                 .dp-card .content .dp-details {
-                    /*width: 50%;*/
                     max-width: 130px;
                     padding-right: 10px;
                     padding-left: 10px;
                 }
 
                 .dp-opening-hours, .address-wrap {
-                    /*width: 48%;*/
                     margin-right: 10px;
                     display: block;
                 }
@@ -633,18 +546,11 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                 }
 
                 .dp-opening-hours, .address-wrap {
-                    /*width: 50%;*/
                     min-width: initial !important;
                 }
             }
 
             @media (max-width: 340px) {
-
-                .dp-card {
-
-                }
-
-
                 .dp-small-heading {
                     font-size: 12px;
                 }
@@ -654,7 +560,6 @@ GfsDropPointStyle.innerHTML = `<dom-module id="gfs-droppoint-styles">
                     }
 
                 .dp-opening-hours, .address-wrap {
-                    /*width: 52%;*/
                     min-width: initial !important;
                 }
 
