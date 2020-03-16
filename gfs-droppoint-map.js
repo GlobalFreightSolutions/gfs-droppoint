@@ -688,6 +688,14 @@ export class GfsDroppointMap extends PolymerElement {
             this.shadowRoot.querySelector('#loader').style.display = 'block';
         }
         else {
+            var deltaLat = 0.010;
+            var objPoint = new google.maps.LatLng(
+                parseFloat(this._selectedDroppoint.marker.position.lat()) + deltaLat,
+                parseFloat(this._selectedDroppoint.marker.position.lng())
+            );
+
+            // now center the map using the new point
+            this._map.setCenter(objPoint);
             this._weekCollection = this.droppointData.weekCollection ? this.droppointData.weekCollection : this._selectedDroppoint.weekCollection;
         }
     }
@@ -724,6 +732,11 @@ export class GfsDroppointMap extends PolymerElement {
     _handleOpeningHoursResponse(e) {
         var buildWeekCollection = [];
         var dayCount = 0;
+        var deltaLat = 0.010;
+        var objPoint = new google.maps.LatLng(
+            parseFloat(this._selectedDroppoint.marker.position.lat()) + deltaLat,
+            parseFloat(this._selectedDroppoint.marker.position.lng())
+        );
 
         this._weekCollection = [];
 
@@ -744,6 +757,9 @@ export class GfsDroppointMap extends PolymerElement {
         this.set('_weekCollection', buildWeekCollection);
         this.droppointData.weekCollection = this._weekCollection;
         this._selectedDroppoint.weekCollection = this._weekCollection;
+
+        // now center the map using the new point
+        this._map.setCenter(objPoint);
         this.shadowRoot.querySelector('#loader').style.display = 'none';
     }
 
