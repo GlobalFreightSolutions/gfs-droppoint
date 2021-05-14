@@ -326,7 +326,7 @@ export class GfsDroppointMap extends PolymerElement {
         let isStore = checkoutData.detail.store;
 
         markers.forEach((pointItem) => {
-            let getCountryCode = _elem.countryCode;
+            let countryCode = _elem.countryCode;
             pointItem.countryCode = _elem.countryCode;
             pointItem.isDroppoint = isDroppoint;
             pointItem.isStore = isStore;
@@ -337,7 +337,7 @@ export class GfsDroppointMap extends PolymerElement {
                 animation: google.maps.Animation.vn,
                 title: pointItem.title,
                 customData: pointItem,
-                icon: isDroppoint ? this._droppointMapIco(getCountryCode) + '/' + pointItem.provider.toLowerCase() + '.png' : this._storeIcon(),
+                icon: isDroppoint ? this._droppointMapIco(countryCode) + '/' + pointItem.provider.toLowerCase() + '.png' : this._storeIcon(),
                 zIndex: google.maps.Marker.MAX_ZINDEX + 1
             };
 
@@ -348,10 +348,10 @@ export class GfsDroppointMap extends PolymerElement {
             marker.addListener('click', function(elem) {
                 _elem._selectDroppoint(this, isDroppoint, isStore);
 
-                const icon = isDroppoint ? _elem._droppointMapIco(getCountryCode) + '/' + pointItem.provider.toLowerCase() + '-selected.png' : _elem._storeIcon();
+                const icon = isDroppoint ? _elem._droppointMapIco(countryCode) + '/' + pointItem.provider.toLowerCase() + '-selected.png' : _elem._storeIcon();
                 this.setIcon(icon);
 
-                _elem._getDroppointsDetails(this.customData.id, isDroppoint);
+                _elem._getDroppointsDetails(this.customData.id, isDroppoint, countryCode);
                 _elem._infoWindow.open(_elem._map, this);
                 _elem._infoWindow.opened = true;
                 _elem._map.panTo(this.customData.marker.getPosition());
@@ -671,10 +671,10 @@ export class GfsDroppointMap extends PolymerElement {
         this._droppointDetailsClass = "fade-out";
     }
 
-    _getDroppointsDetails(droppointID, isDroppoint) {
+    _getDroppointsDetails(droppointID, isDroppoint, countryCode) {
         this.isDroppoint = isDroppoint;
         let createSession = this.$.getDroppointInfo;
-        createSession.url = this.checkoutUri + (isDroppoint ? '/api/droppoints/' : '/api/stores/') + droppointID;
+        createSession.url = this.checkoutUri + (isDroppoint ? '/api/droppoints/' : '/api/stores/') + droppointID + '?countryCode=' + countryCode;
         createSession.headers = this._getBearerToken();
         createSession.generateRequest();
     }
