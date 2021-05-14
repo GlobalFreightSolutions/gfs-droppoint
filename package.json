@@ -11,7 +11,7 @@
         "url": "https://github.com/GlobalFreightSolutions/gfs-droppoint.git"
     },
     "name": "@gfsdeliver/gfs-droppoint",
-    "version": "2.0.0-preview.6",
+    "version": "2.0.0-preview.7",
     "main": "gfs-droppoint.js",
     "author": "Global Freight Solutions",
     "license": "Apache-2.0",
